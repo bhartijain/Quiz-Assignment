@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="lib/require.js" data-main="config.js"></script>
+ 
+</head>
+<body style = " color:whitesmoke;font-size:18px;">
+	<div id = "container" ></div>
+</body>
+
+<script id="main-layout" type="text/html">
+		  <div id="header-region"></div>
+		  <div id="body-region"></div>
+		  <div id = "footer-region"></div>
+	</script>
+
+
+<script type = "text/x-handlebars-template" id = "start-template">
+	<div class = "container" style = "background-color : #FFD2D2; height: 100px; width : 200px; margin-top: 200px;">
+		<button class = "btn btn-primary" id = "startBtn"> Start </button>
+	</div>
+</script>
+
+<script type = "text/x-handlebars-template" id = "header-template">
+<div class = "row col-sm-12" id = "header">
+	<div class ="col-sm-4" id = "timer">
+		<span id = "timer" style = "font-color : #DB8CFF;"><span id="countDown">01:00</span>/05:00</span>
+	</div>
+	<div class = "col-sm-offset-2 col-sm-6" id = "oval">
+		Question No. {{Index}} of 10
+	</div>
+</div>
+</script>
+
+<script type = "text/x-handlebars-template" id = "question-template">
+<div class = "row col-sm-12" id = "questionBody">
+	<div class = "row col-sm-12" style= "background-color : #FFB8CE;">
+		<p style = "margin-top: 8px; margin-left : 100px;">Ques.{{question}} </p>
+	</div>
+	<div class = "row col-sm-12 option">
+		<form id = "myForm">
+	   		{{#each choices}}
+			  <input type="radio"  value="{{@index}}" name = "choice" class = "choice" {{#selectedChoice ../selectedAnswer @index}} checked {{/selectedChoice}} > {{this}}<br>
+			 {{/each}}
+		</form>
+	</div>
+</div>
+</script>
+
+<script type = "text/x-handlebars-template" id = "footer-template">
+<div class = "row col-sm-12" style = "background-color : #E8D2FF; height: 100px;">
+	<button class = "btn backBtn" id = "{{id}}">Back</button>
+	{{#ifcond id}}
+	 <button  class = "btn nextBtn" id = "{{id}}" disabled = "disabled" > Next </button>
+	{{else}}
+	<button  class = "btn scoreBtn"> Score </button>
+	{{/ifcond}}
+</div>
+</script>
+
+<script type = "text/x-handlebars-template" id = "score-template">
+	<h3 style =" color : black;" > Your final score is {{score}} from 10.</h3>
+	
+</script>
+
+</html>
+
+<style>
+
+#startBtn{
+	height : 50px;
+	width : 100px;
+	 margin-left:40px; 
+	margin-top : 20px;	
+}
+.backBtn {
+	background-color:#5CA4FF;
+	height: 50px;
+	width : 160px;
+	margin-top : 20px;
+	margin-left : 60px;
+	font-color : #DB8CFF;
+}
+.scoreBtn {
+	background-color:#5CA4FF;
+	height: 50px;
+	width : 160px;
+	margin-top : 20px;
+	margin-left : 60px;
+	font-color : #DB8CFF;
+}	
+.nextBtn {
+	background-color:#5CA4FF;
+	height: 50px;
+	width : 160px;
+	margin-top : 20px;
+	margin-left : 50px;
+	font-color : #DB8CFF;
+}
+input[type=radio] {
+    margin: 17px 0;
+    font-size: 50px;
+    margin-top: 1px\9;
+    line-height: normal;
+}
+#oval{
+    width: 220px;
+    height: 40px;
+      margin: 20px 200px;
+    border-radius: 25px;
+    padding: 7px 20px;
+    background-color : #5CA4FF ;
+}
+
+#timer{
+	background-color:#5CA4FF;
+	 margin: 20px 30px;
+	  height: 40px; 
+	  width :200px;
+}
+#header{
+	background-color : #BBFFFF; 
+	height:100px;
+}
+#questionBody{
+	 background-color : #FFD2D2;
+	 height: 265px;
+	 color:#7C7EFF;
+}
+.option{
+	margin-top: 10px; 
+	margin-left : 110px;
+}
+</style>
+
+
+
