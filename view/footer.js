@@ -82,12 +82,6 @@ define([
 		},
 
 		scoreButton : function(){
-			var sum = 0;
-			var total = _.each(this.collection.models, function(object){
-							if(object.attributes.score != "")
-								sum = sum + object.attributes.score;
-				});
-			localStorage.setItem('finalScore', sum);
 			App.router.navigate('score', {trigger : true });
 		},
 	

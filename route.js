@@ -4,18 +4,26 @@ define([
 	'underscore',
 	'backbone',
 	'view/start',
-	'view/home',
-	'./mainLayout',
-	'view/score'
+	'view/mainLayout',
+	'view/score',
+	'view/header',
+	'view/questionBody',
+	'view/footer',
+	'model/questionModel',
+	'collection/questionCollection'
 		], function(
 				$,
 				exports,
 				_,
 				Backbone,
 				Start,
-				Home,
 				MainLayout,
-				Score
+				Score,
+				Header,
+				QuestionBody,
+				Footer,
+				QuizModel,
+				QuestionCollection
 				){
 		'use strict';
 		exports.Router = Backbone.Router.extend({
@@ -33,8 +41,11 @@ define([
 
 			home: function(){
 				MainLayout.layout.header.empty();
-				var HomeView = new Home.HomeView();
-				HomeView.render();
+				var quizModel = new QuizModel.QuizModel();
+				MainLayout.layout.header.show(new Header.HeaderView({model : quizModel, collection : QuestionCollection.allQuestions}));
+				MainLayout.layout.body.show(new QuestionBody.QuestionView({model : quizModel, collection : QuestionCollection.allQuestions}));
+				MainLayout.layout.footer.show(new Footer.FooterView({collection : QuestionCollection.allQuestions, model : quizModel}));
+				quizModel.set(QuestionCollection.allQuestions.get(0).toJSON());
 			},
 
 			score : function(){

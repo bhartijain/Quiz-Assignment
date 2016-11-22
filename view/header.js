@@ -1,28 +1,24 @@
+/*globals define*/
 define([
-	'jquery',
-	'exports',
-	'underscore',
-	'backbone',
-	'marionette',
-	'handlebar',
-	'../app',
-	], function(
-		$,
-		exports,
-		_,
-		Backbone,
-		Marionette,
-		Handlebar,
-		App
-	){
-		'use strict';
-		var timer;
-		exports.HeaderView = Marionette.ItemView.extend({
-			initialize : function(){
-					var fiveMinutes = 60 * 1;
-					this.startTimer(fiveMinutes);
-					this.listenTo(this.model, 'change', this.render);
-			},
+    'jquery',
+    'exports',
+    'marionette',
+    'handlebar',
+    '../app'
+], function (
+    $,
+    exports,
+    Marionette,
+    Handlebar,
+    App
+) {
+    'use strict';
+    exports.HeaderView = Marionette.ItemView.extend({
+        initialize: function () {
+            var fiveMinutes = 60 * 1;
+            this.startTimer(fiveMinutes);
+            this.listenTo(this.model, 'change', this.render);
+        },
 
 			render : function(){
 					var id = this.model.attributes.id + 1;
@@ -59,12 +55,6 @@ define([
 				},
 
 				displayScore : function(){
-						var sum = 0;
-						var total = _.each(this.collection.models, function(object){
-										if(object.attributes.score != "")
-											sum = sum + object.attributes.score;
-							});
-						localStorage.setItem('finalScore', sum);
 						App.router.navigate('score', {trigger : true });
 				}
 			
