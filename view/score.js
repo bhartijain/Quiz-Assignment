@@ -21,8 +21,9 @@ define([
         render: function () {
             clearInterval(Header.timerId);
             var sum = 0;
+            console.log(QuestionCollection.allQuestions.models);
             _.each(QuestionCollection.allQuestions.models, function (object) {
-                if (object.attributes.score !== "") {
+                if (object.attributes.score != "") {
                     sum = sum + object.attributes.score;
                 }
             });

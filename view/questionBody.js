@@ -48,7 +48,7 @@ define([
             var selectedAnswer = $('input[name=choice]:checked').val();
             var data = this.model.attributes;
             var score = 0;
-            if (data.correctAnswer === selectedAnswer) {
+            if (data.correctAnswer == selectedAnswer) {
                 data.score = 1;
                 score = 1;
             }

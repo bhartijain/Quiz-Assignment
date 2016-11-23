@@ -45,13 +45,13 @@ define([
         },
 
         disableButton: function (data) {
-            if (data.id === "0") {
+            if (data.id == "0") {
                 $('.backBtn').attr("disabled", true);
             }
-            if (data.selectedAnswer !== "") {
+            if (data.selectedAnswer != "") {
                 $('.nextBtn').removeAttr("disabled");
             }
-            if (data.id === "2") {
+            if (data.id == "2") {
                 $('.nextBtn').attr("disabled", true);
             }
         },
